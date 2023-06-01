@@ -1,9 +1,11 @@
+import { useMovies } from "../hooks/useMovies"
+
 function ListOfMovies({ movies }) {
   return (
-    <ul>
+    <ul className="movies">
       {
         movies.map(movie => (
-          <li key={movie.id}>
+          <li className="movie" key={movie.id}>
             <h3>{movie.title}</h3>
             <p>{movie.year}</p>
             <img src={movie.poster} alt={movie.Title} />
@@ -14,18 +16,20 @@ function ListOfMovies({ movies }) {
   )
 }
 
-function NoMoviesResults () {
+function NoMoviesResults() {
   return (
-    <p>No se encontraron resultados en esta búsqueda</p>
+    <>
+      <p>No se encontraron resultados en esta búsqueda</p>
+    </>
   )
 }
 
-export function Movies ({ movies }) {
+export function Movies({ movies }) {
   const hasMovies = movies?.length > 0
 
   return (
-      hasMovies
-        ? <ListOfMovies movies={movies} />
-        : <NoMoviesResults />
+    hasMovies
+      ? <ListOfMovies movies={movies} />
+      : <NoMoviesResults />
   )
 }
